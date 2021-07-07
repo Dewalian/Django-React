@@ -2,12 +2,14 @@ from main.models import Question
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User 
-        fields = ["username", "email"]
-
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = "__all__"
+        fields = ["id", "title", "ask_post"]
+
+class UserSerializer(serializers.ModelSerializer):
+    question = QuestionSerializer(many=True, read_only=True, source="question_set")
+
+    class Meta:
+        model = User 
+        fields = ["username", "email", "question"]
