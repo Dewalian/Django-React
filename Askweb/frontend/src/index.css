@@ -1,0 +1,182 @@
+/* template */
+body {
+  margin: 0;
+  height: 100vh;
+  position: relative;
+  background-color: rgb(34, 34, 34);
+  padding: 0 50px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+  --secondary-clr: rgb(228, 243, 12);
+}
+
+/* navbar */
+.navbar {
+  height: 60px;
+  border-bottom: 1px solid blanchedalmond;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+}
+
+.nav-title {
+  color: var(--secondary-clr);
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  width: 100px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item:not(:first-child) {
+  border-left: 1px solid blanchedalmond;
+}
+
+.nav-item a {
+  text-decoration: none;
+  font-weight: 600;
+  color: whitesmoke;
+  padding: 7px 12px;
+  border-radius: 10px;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.nav-item a:hover {
+  color: rgb(0, 0, 0);
+  background-color: var(--secondary-clr);
+}
+
+/* home */
+.home {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-auto-rows: minmax(40px, auto);
+  justify-content: center;
+  gap: 15px;
+  padding-top: 15px;
+}
+
+.main-content {
+    grid-column: 1 / 2;
+    background-color: rgb(39, 39, 39);
+}
+
+.sidebar {
+    grid-column: 2 / 3;
+    background-color: rgb(39, 39, 39);
+}
+
+.sidebar ul li {
+  color: whitesmoke;
+}
+
+.main-content p {
+  color: whitesmoke;
+}
+
+.question-post {
+    box-sizing: border-box;
+    background-color: rgb(48, 48, 48);
+    border: 1px solid black;
+    margin: 15px 10px;
+    padding: 5px 15px;
+}
+
+.question-post h1 {
+    color: whitesmoke;
+    font-size: 1.2em;
+}
+
+.question-post h1::first-letter,
+.question-post .ask::first-letter {
+    text-transform: capitalize;
+}
+
+.question-post .user {
+    font-size: 0.5em;
+}
+
+/* Form */
+.acc-form {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%);
+}
+
+.acc-form input {
+    box-sizing: border-box;
+    background-color: rgb(224, 224, 224);
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    border: none;
+}
+
+.acc-form input:focus,
+.acc-form input:hover {
+    box-shadow: 8px 8px;
+    transform: translate(-1%, -1%);
+}
+
+.acc-form input[type=submit] {
+    background-color: rgb(71, 71, 71);
+    border: none;
+}
+
+.acc-form input[type=submit]:hover {
+    background-color: gray;
+}
+
+.acc-form div {
+    position: relative;
+    bottom: 6px;
+    left: 6px;
+    align-self: flex-start;
+    color: rgb(255, 104, 104);
+    font-size: 0.75rem;
+}
+
+.acc-form .error {
+    background-color: rgba(255, 144, 144, 0.63);
+}
+
+.acc-form .error::placeholder {
+    color: black;
+}
+
+h2 {
+    font-size: 2em;
+    color: rgb(228, 243, 12);
+    text-shadow: 5px 5px black;
+}
