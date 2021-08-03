@@ -1,11 +1,11 @@
-import useFetch from "./UseFetch";
+import {useAxios} from "use-axios-client";
 
 const MainContent = () => {
-    const {data, isPending, error} = useFetch("http://127.0.0.1:8000/api/question/");
+    const {data, error, loading} = useAxios({url: "http://127.0.0.1:8000/api/question/"});
     return ( 
         <div className="main-content">
-            {error && <div>{error}</div>}
-            {isPending && <div>Loading...</div>}
+            {error && <div>{error.message}</div>}
+            {loading && <div>Loading...</div>}
             {data && data.map(question => (
                 <div className="question-post" key={question.id}>
                     <h1>{question.title}</h1>
