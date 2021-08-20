@@ -12,7 +12,7 @@ const Register = () => {
 
     const submit = (data) => {
         axiosInstance.post("/user/", {
-            username: data.email,
+            username: data.username,
             email: data.email,
             password: data.password
         })

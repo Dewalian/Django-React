@@ -1,10 +1,22 @@
 import {useForm} from "react-hook-form";
+import { useHistory } from "react-router";
+import axiosInstance from "./AxiosInstance";
 
 const Login = () => {
+    const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     const submit = (data) => {
-        console.log(data)
+        axiosInstance.post("token/", {
+            username: data.username,
+            password: data.password
+        })
+        .then((res) => {
+            localStorage.setItem("access_token", res.data.access);
+            localStorage.setItem("refresh_token", res.data.refresh);
+            axiosInstance.defaults.headers["Authorization"] = `JWT ${localStorage.getItem("access_token")}`;
+            history.push("/");
+        })
     };
 
     const classToggle = (errorName) => {

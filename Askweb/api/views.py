@@ -3,12 +3,12 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from . serializers import UserSerializer
-from rest_framework.authentication import BasicAuthentication
-from . auth import CsrfExemptSessionAuthentication
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserAPI(APIView):
-    def get(self, request, id, format=None):
-        model_data = User.objects.get(id=id)
+    def get(self, request, username, format=None):
+        model_data = User.objects.get(username=username)
         serializer = UserSerializer(model_data)
         return Response(serializer.data)
 
@@ -24,3 +24,14 @@ class UserAll(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BlackListToken(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
